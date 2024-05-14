@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,6 +35,7 @@ namespace ConsoleUI
             */
 
             // Create a list of Vehicle called vehicles
+            List<Vehicle> vehicles = new List<Vehicle>();
 
             /*
              * Create 4 instances: 1 Car, 1 Motorcycle, and then 2 instances of type Vehicle (use explicit typing) but use constuctors from derived classes
@@ -40,12 +43,32 @@ namespace ConsoleUI
              * Set the properties values with object initializer syntax
              */
 
+            var carOne = new Car() { Year = "2016", Make = "Buick", Model = "Encore", HasTrunk = true };
+            var motorcycleOne = new Motorcycle() { Year = "2020", Make = "Honda", Model = "SuperCub", HasSideCart = false };
+            Vehicle carTwo = new Car() { Year = "2023", Make = "Mazda", Model = "3", HasTrunk = true };
+            Vehicle motorcycleTwo = new Motorcycle() { Year = "2019", Make = "Harley Davidson", Model = "Sportster", HasSideCart = true };
+
+
             /*
              * Add the 4 vehicles to the list
              * Using a foreach loop iterate through the list and display each of the properties
              */
+            vehicles.Add(carOne);
+            vehicles.Add(motorcycleOne);
+            vehicles.Add(carTwo);
+            vehicles.Add(motorcycleTwo);
+
+            foreach (var vehicle in vehicles)
+            {
+                Console.WriteLine($"Year: {vehicle.Year}\nMake: {vehicle.Make}\nModel: {vehicle.Model}");
+            }
 
             // Call each of the drive methods for one car and one motorcycle
+            carOne.DriveAbstract();
+            carOne.DriveVirtual();
+
+            motorcycleOne.DriveAbstract();
+            motorcycleOne.DriveVirtual();
 
             #endregion            
             Console.ReadLine();
